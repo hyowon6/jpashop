@@ -18,7 +18,7 @@ public class ItemRepository {
         if (item.getId() == null) {// id가 없으면 신규로 보고
             em.persist(item);// 그래서 jpa가 제공하는 persist 사용
         } else {// id가 있으면 이미 DB에 저장된 엔티티를 수정한다고 보고
-            em.merge(item);// 강제로 업데이트
+            Item merge = em.merge(item);// 강제로 업데이트
         }
     }
 
