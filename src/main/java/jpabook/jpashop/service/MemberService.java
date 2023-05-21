@@ -40,10 +40,16 @@ public class MemberService {
 
     //회원 전체 조회
     public List<Member> findMembers() {
-            return memberRepository.findAll();
+        return memberRepository.findAll();
     }
 
     public Member findOne(Long memberId) {//단건 조회
         return memberRepository.findOne(memberId);
+    }
+
+    @Transactional//트랜잭션 시작
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);//jpa가 영속성 컨텍스트에서 id를 찾아옴
+        member.setName(name);//영속 상태 member setname으로 이름을 바꿔줌
     }
 }
